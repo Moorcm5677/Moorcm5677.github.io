@@ -22,8 +22,10 @@
 				var dpi = window.devicePixelRatio;
 				var aspect_ratio = 16/9;
 
-				var viewport_w = cc_canv.parent().width();
-				var viewport_h = viewport_w / aspect_ratio;
+			//	var viewport_w = cc_canv.parent().width();
+				var viewport_w = window.innerWidth
+			//	var viewport_h = viewport_w / aspect_ratio;
+				var viewport_h = window.innerHeight
 				  
 				var canv_w = Math.round(viewport_w);
 				var canv_h = Math.round(viewport_h);
