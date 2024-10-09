@@ -1,0 +1,89 @@
+{% set mobile_mode = request.user_agent.platform in ('android', 'iphone', 'ipad') %}
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <link href="/static/style.css" rel="stylesheet">
+    <script src="/static/jquery.js"></script>
+  </head>
+  <body>
+{% if mobile_mode %}
+    <style>
+      #body {min-height: 0px;}
+      .sec {padding: 0px;}
+      .row {padding: 0px;}
+    </style>
+{% else %}
+    <div id="header">
+      <div class="row">
+        <a href="/"><h1 class="columns">Home</h1></a>
+        <a href="/play"><h1 class="columns">Play</h1></a>
+      </div>
+    </div>
+{% endif %}
+<div id="body">
+<div class="sec">
+  <div class="row">
+    <canvas id="canvas" style="display:block; box-sizing:border-box; border-width:0px; padding:0; margin:0 auto; background-color: black; width:100%; height:auto;"
+            oncontextmenu="event.preventDefault()" tabindex=-1 width="1000" height="562"></canvas>
+    <span id="logmsg" style="font-size:18px;color:#F67;"></span>
+  </div>
+</div>
+<script type='text/javascript'>
+  function resizeGameCanvas() {
+    var cc_canv = $('canvas#canvas');
+    var dpi = window.devicePixelRatio;
+    var aspect_ratio = 16/9;
+
+    var viewport_w = cc_canv.parent().width();
+    var viewport_h = viewport_w / aspect_ratio;
+
+    var canv_w = Math.round(viewport_w);
+    var canv_h = Math.round(viewport_h);
+
+    if (canv_h % 2) { canv_h = canv_h - 1; }
+    if (canv_w % 2) { canv_w = canv_w - 1; }
+
+{% if mobile_mode %}
+    var screen_h = Math.min(window.innerHeight, window.outerHeight || window.innerHeight);
+    canv_h = screen_h;
+{% endif %}
+     cc_canv[0].width  = canv_w * dpi;
+     cc_canv[0].height = canv_h * dpi;
+  }
+
+  var Module = {
+    preRun: [ resizeGameCanvas ],
+    postRun: [],
+    arguments: {{game_args|safe}},
+    print: function(text) {
+      if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+      console.log(text);
+    },
+    printErr: function(text) {
+      if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+      console.error(text);
+    },
+    canvas: (function() { return document.getElementById('canvas'); })(),
+    setStatus: function(text) {
+      console.log(text);
+      document.getElementById('logmsg').innerHTML = text;
+    },
+    totalDependencies: 0,
+    monitorRunDependencies: function(left) {
+      this.totalDependencies = Math.max(this.totalDependencies, left);
+      Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
+    }
+  };
+  Module.setStatus('Downloading...');
+  window.onerror = function(msg) {
+    // TODO: do not warn on ok events like simulating an infinite loop or exitStatus
+    Module.setStatus('Exception thrown, see JavaScript console (' + msg + ')');
+    Module.setStatus = function(text) {
+      if (text) Module.printErr('[post-exception status] ' + text);
+    };
+  };
+</script>
+<script async type="text/javascript" src="/static/classisphere.js"></script>
+        </div>
+    </body>
+</html>
