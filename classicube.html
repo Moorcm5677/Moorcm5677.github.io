@@ -37,8 +37,7 @@
   			var Module = {
    			 preRun: [ resizeGameCanvas ],
    			 postRun: [],
-			 var {username} = 'anon',
-   			 arguments: [ {username} ],
+   			 arguments: {{game_args|safe}},
    			 print: function(text) {
       			if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
       			console.log(text);
