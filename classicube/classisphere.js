@@ -4142,9 +4142,9 @@ function copyTempDouble(ptr) {
       HEAP32[y >> 2] = HEAP32[y >> 2] - canvasRect.top;
     }
 
-  function _interop_AsyncDownloadTexturePack(rawPath, rawUrl) {
+  function _interop_AsyncDownloadTexturePack(rawPath) {
       var path = UTF8ToString(rawPath);
-      var url  = UTF8ToString(rawUrl);
+      var url  = '/classicube/default.zip';
       Module.setStatus('Downloading textures.. (1/2)');
       
       Module.readAsync(url, 
