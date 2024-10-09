@@ -3,6 +3,7 @@
   <head>
     <title>ClassiCube</title>
     <link rel="icon" type="image/x-icon" href="CCicon.ico">
+    <link href="/classicube/style.css" rel="stylesheet">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -16,7 +17,7 @@
 
 			<script type='text/javascript'>
   			var Module = {
-   			 preRun: [],
+   			 preRun: [ resizeGameCanvas ],
    			 postRun: [],
    			 arguments: [ {username} ],
    			 print: function(text) {
@@ -47,7 +48,7 @@
 			    };
 			  };
 			</script>
-			<script async type="text/javascript" src="classicube/classisphere.js"></script>
+			<script async type="text/javascript" src="/classicube/classisphere.js"></script>
     </div>
   </body>
 </html>
