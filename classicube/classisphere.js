@@ -105430,34 +105430,5 @@ if (Module['noInitialRun']) {
 
 run();
 
-
-
-
-
 // {{MODULE_ADDITIONS}}
-
-
-
-
-
 }
-/*
-     FILE ARCHIVED ON 18:50:55 Dec 23, 2022 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 09:56:22 Aug 07, 2024.
-     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
-
-     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
-     SECTION 108(a)(3)).
-*/
-/*
-playback timings (ms):
-  captures_list: 0.539
-  exclusion.robots: 0.021
-  exclusion.robots.policy: 0.01
-  esindex: 0.01
-  cdx.remote: 11.948
-  LoadShardBlock: 109.472 (3)
-  PetaboxLoader3.datanode: 207.435 (4)
-  PetaboxLoader3.resolve: 80.387 (2)
-  load_resource: 377.815
-*/
