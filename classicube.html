@@ -18,11 +18,15 @@
 			<script type='text/javascript'>
 
 			function resizeGameCanvas() {
-				var cc_canv = ('canvas#canvas');
+				var cc_canv = $('canvas#canvas');
 				var dpi = window.devicePixelRatio;
+				var aspect_ratio = 16/9;
+
+				var viewport_w = cc_canv.parent().width();
+    				var viewport_h = viewport_w / aspect_ratio;
 				  
-				var canv_w = Math.round(window.innerWidth);
-				var canv_h = Math.round(window.innerHeight);
+				var canv_w = Math.round(viewport_w);
+				var canv_h = Math.round(viewport_h);
 
 				if (canv_h % 2) { canv_h = canv_h - 1; }
 				if (canv_w % 2) { canv_w = canv_w - 1; }
