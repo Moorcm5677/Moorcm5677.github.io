@@ -1,3 +1,4 @@
+{% set mobile_mode = request.user_agent.platform in ('android', 'iphone', 'ipad') %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -30,6 +31,11 @@
 
 				if (canv_h % 2) { canv_h = canv_h - 1; }
 				if (canv_w % 2) { canv_w = canv_w - 1; }
+
+				{% if mobile_mode %}
+    				var screen_h = Math.min(window.innerHeight, window.outerHeight || window.innerHeight);
+				canv_h = screen_h;
+				{% endif %}
 
 				cc_canv[0].width  = canv_w * dpi;
 				cc_canv[0].height = canv_h * dpi;
